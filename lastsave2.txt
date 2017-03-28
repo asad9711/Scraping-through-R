@@ -1,0 +1,99 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> length(gross_data)
+[1] 84
+> trial<-list("NA")
+> trial
+[[1]]
+[1] "NA"
+
+> trial<-list("NA","a","b","c")
+> trial
+[[1]]
+[1] "NA"
+
+[[2]]
+[1] "a"
+
+[[3]]
+[1] "b"
+
+[[4]]
+[1] "c"
+
+> #LEAVING GROSS EARNING AND METASCORE OUT OF ANALYSIS
+> movies_df<-data.frame(rank=rank_data,title=title_data,description=desc_data,runtime=runtime_data,genre=genre_data,rating=rating_data,director=directors_data,star=stars_data)
+> str(movies_df)
+'data.frame':   100 obs. of  8 variables:
+ $ rank       : num  1 2 3 4 5 6 7 8 9 10 ...
+ $ title      : Factor w/ 99 levels "10 Cloverfield Lane",..: 65 68 52 70 58 75 79 34 94 97 ...
+ $ description: Factor w/ 100 levels "\"The Thinning\" takes place in a post-apocalyptic future where population control is dictated by a high-school aptitude test. "| __truncated__,..: 78 53 55 85 21 54 41 100 31 13 ...
+ $ runtime    : num  133 108 107 117 116 88 103 139 92 111 ...
+ $ genre      : Factor w/ 10 levels "Action","Adventure",..: 1 3 3 8 2 1 1 4 3 5 ...
+ $ rating     : num  8 7.2 7.7 7.4 7 6.6 6.2 8.2 6.5 6.3 ...
+ $ director   : Factor w/ 98 levels "Alex Proyas",..: 33 18 81 58 67 37 97 62 95 47 ...
+ $ star       : Factor w/ 87 levels "Adam Driver",..: 35 60 8 41 43 47 59 5 6 87 ...
+> hist(movies_df$genre)
+Error in hist.default(movies_df$genre) : 'x' must be numeric
+> genre_vec<-movies_df$genre
+> hist(genre_vec)
+Error in hist.default(genre_vec) : 'x' must be numeric
+> barplot(genre_vec)
+Error in barplot.default(genre_vec) : 
+  'height' must be a vector or a matrix
+> barplot(prop.table(table(genre_vec)))
+> barplot(prop.table(table(genre_vec)),ylim=c(1,20))
+> barplot(prop.table(table(genre_vec)),ylim=c(1,4))
+> barplot(prop.table(table(genre_vec)),ylim=c(0,1))
+> genre_vec
+  [1] Action    Animation Animation Horror    Adventure Action    Action   
+  [8] Biography Animation Comedy    Drama     Action    Drama     Adventure
+ [15] Adventure Drama     Drama     Comedy    Action    Action    Action   
+ [22] Biography Biography Drama     Drama     Action    Comedy    Action   
+ [29] Crime     Action    Drama     Action    Action    Drama     Mystery  
+ [36] Crime     Drama     Biography Action    Action    Adventure Action   
+ [43] Drama     Animation Animation Adventure Comedy    Comedy    Drama    
+ [50] Comedy    Action    Action    Crime     Adventure Animation Action   
+ [57] Drama     Action    Action    Adventure Comedy    Drama     Action   
+ [64] Adventure Action    Action    Biography Crime     Animation Action   
+ [71] Action    Action    Drama     Action    Animation Action    Comedy   
+ [78] Drama     Comedy    Comedy    Adventure Action    Action    Horror   
+ [85] Thriller  Comedy    Biography Drama     Action    Drama     Comedy   
+ [92] Biography Thriller  Action    Drama     Drama     Action    Action   
+ [99] Crime     Drama    
+10 Levels: Action Adventure Animation Biography Comedy Crime Drama ... Thriller
+> summary(genre_vec)
+   Action Adventure Animation Biography    Comedy     Crime     Drama    Horror 
+       34         9         8         7        12         5        20         2 
+  Mystery  Thriller 
+        1         2 
+> names(genre_vec)
+NULL
+> genre_vec<-as.factor(genre_vec)
+> names(genre_vec)
+NULL
+> barplot(prop.table(table(genre_vec)),ylim=c(0,1))
+> barplot(prop.table(table(genre_vec)),ylim=c(0,1))
+> barplot(prop.table(table(genre_vec)),ylim=c(0,1))
+> barplot(prop.table(table(genre_vec)),ylim=c(0,1),horiz=TRUE)
+> barplot(prop.table(table(genre_vec)),xlim=c(0,1),horiz=TRUE)
+> 
